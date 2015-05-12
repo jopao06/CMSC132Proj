@@ -35,11 +35,9 @@ var lexicalTable = [];
 var symbolTable = [];
 
 window.onload = function() {
-	var uploadForm = document.getElementById('uploadForm');
-	var inputFile = document.getElementById('inputFile');
-	// var convertedFileData = document.getElementById('convertedFileData');
+	var uploadButton = document.getElementById('uploadButton');
 
-	uploadForm.addEventListener('submit', function(e) {
+	uploadButton.addEventListener('click', function(e) {
 		var file = inputFile.files[0];
 		var textType = /text.*/;
 
@@ -72,27 +70,16 @@ window.onload = function() {
 			for(var j = 0; j<tokens.length; j++) {
 				if(tokens[j].length) {
 					tokens[j] = tokens[j].trim();
-					mappedInstruction = mappedInstruction + opcodeMap[tokens[j]];
+					mappedInstruction = mappedInstruction + opcodeMap[tokens[j]] + " ";
 				}
 			}
 
 			convertedInstructions.push(mappedInstruction);
 		}
 		
-		// Displays Data
-				
-		var displayData = "";
-		var displayDataMappedOpcode = "";
-
 		for(var i = 0; i<lineTokens.length; i++) {
-			lineTokens[i] = lineTokens[i].trim();
-			displayData += lineTokens[i] + "\n";
-			displayDataMappedOpcode += convertedInstructions[i] + "\n";
+			$("table#syntaxMachineCodeTable").append('<tr><td>' + lineTokens[i] + '</td><td>' + convertedInstructions[i] + '</td></tr>');
 		}	
-
-
-		console.log(displayData);
-		console.log(displayDataMappedOpcode);
 		
 
 		lexicalAnalysis();
@@ -134,11 +121,31 @@ window.onload = function() {
 				// LOAD
 				if(ld_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(ld_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "LOAD INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// STORE
 				else if(str_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(str_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "STORE INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// SAVE
@@ -158,76 +165,221 @@ window.onload = function() {
 				// INCREMENT
 				else if(inc_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(inc_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "INCREMENT INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// DECREMENT
 				else if(dec_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(dec_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "DECREMENT INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// ADDITION
 				else if(add_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(add_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "ADDITION INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// DIVISION
 				else if(sub_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(sub_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "DIVISION INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// MULTIPLICATION
 				else if(mul_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(mul_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "MULTIPLICATION INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// DIVISION
 				else if(div_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(div_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "DIVISION INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// COMPARE
 				else if(cmp_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(cmp_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "COMPARE INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// AND
 				else if(and_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(and_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "AND INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// OR
 				else if(or_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(or_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "OR INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// NOT
 				else if(not_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(not_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "NOT INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// XOR
 				else if(xor_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(xor_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "XOR INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
+					classifyLexemes(match[3]);
 				}
 
 				// JUMP EQUAL
 				else if(je_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(je_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "JUMP EQUAL INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
 				}
 
 				// JUMP GREATER THAN
 				else if(jg_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(jg_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "JUMP GREATER THAN INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
 				}
 
 				// JUMP LESS THAN
 				else if(jl_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(jl_regex);
+
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "JUMP LESS THAN INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
 				}			
 
 				// JUMP
 				else if(jmp_regex.test(lineTokens[i])) {
 					var match = lineTokens[i].match(jmp_regex);
+					var data = [];
+
+					data['instruction'] = match[1];
+					data['description'] = "JUMP INSTRUCTION";
+
+					lexicalTable.push(data);
+
+					classifyLexemes(match[2]);
 				}			
 
 				else {

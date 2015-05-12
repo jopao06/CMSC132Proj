@@ -1,3 +1,33 @@
 .panel{
 	min-height: 295px;
+	max-height: 295px;
+}
+
+.scrollable-y{
+	overflow-y: auto;
+}
+
+.scrollable-x{
+	overflow-x: auto;
+}
+
+div.cycle div.panel-body table tbody tr td,
+div.cycle div.panel-body table tbody tr th{
+	text-align: center;
+	overflow: hidden; 
+}
+/*
+table tbody tr th{
+	width:10px;
+}
+table tbody tr td{
+	width:10px;
+}
+*/
+table tbody tr th.code{
+	width:125px;
+}
+
+div.cycle div.panel-body table tbody tr td.code{
+	text-align: left;
 }
