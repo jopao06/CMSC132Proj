@@ -389,7 +389,7 @@ window.onload = function() {
 			}
 		}
 
-		printArray(lexicalTable);
+		//printArray(lexicalTable);
 	}
 
 	function classifyLexemes(lexemes) {
